@@ -16,6 +16,7 @@ penna = turtle.Turtle()
 penna.color("blue")
 #penna.color("blue", "red")
 
+
 # -----------------------------------
 # spostare la punta della penna
 # -----------------------------------
@@ -26,6 +27,7 @@ penna.goto(-100,-100)
 # muovere la penna e disegnare quadrato
 # -----------------------------------
 
+# ciao
 #penna.begin_fill()
 penna.forward(100)
 penna.left(90)
