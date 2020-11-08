@@ -1,0 +1,29 @@
+/**
+ * Runs the teknkl-simpledto Prefill Script when a form is present
+ *
+ * Checks for a form, and if on the production url. The function
+ * checks the current domain against the domain of the data-transfer-page
+ * and if they do not match it throws an error.
+ *
+ * Checking for the domain prevents any errors being thrown on local
+ * or development sites.
+ *
+ * @see https://blog.teknkl.com/pre-fill-any-site-any-form/
+ */
+
+var form = document.querySelector('.sysdig-form');
+if ( form && window.location.hostname === 'sysdig.com' ) {
+	var DTO = new SimpleDTO({
+		domain: "sysdig.com",
+		dataSrc: "https://go.sysdig.com/data-transfer-page.html",
+		debug: false,
+		mode: "receive",
+		cb: function (instance) {
+			var mktoFields = DTO.getGlobal()["mktoPreFillFields"];
+			DTO.cleanup();
+			MktoForms2.whenReady(function (form) {
+				form.setValuesCoerced(mktoFields);
+			});
+		}
+	});
+}
